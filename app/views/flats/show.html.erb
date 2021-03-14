@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Street number:</strong>
+  <%= @flat.street_number %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @flat.street %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @flat.district %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @flat.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @flat.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @flat.country %>
+</p>
+
+<%= link_to 'Edit', edit_flat_path(@flat) %> |
+<%= link_to 'Back', flats_path %>
