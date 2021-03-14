@@ -26,9 +26,10 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
+// MAPBOX
+// import { initMapbox } from 'map';
+
+// document.addEventListener('turbolinks:load', () => {
+//   initMapbox();
+// })
