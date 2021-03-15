@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Parser Assignment</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0/dist/cdn/placesAutocompleteDataset.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -34,6 +42,8 @@
         markers.forEach((marker) => {
           new mapboxgl.Marker()
             .setLngLat([marker.lng, marker.lat])
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML(marker.infoWindow.content))
             .addTo(map);
         })
 
@@ -49,8 +59,25 @@
           });
           map.fitBounds(bounds, {duration: 1000, padding: 75})
         }
+
+        map.addControl(new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken
+        }));
       }
 
+
+      // For Algolia / Flat creation / Autocomplete in field 'street'
+      const streetInput = document.getElementById('flat_street');
+
+      if (streetInput) {
+        const placesAutocomplete = places({
+          container: streetInput
+        });
+      }
+
+
+      // response.body().toJson()
     </script>
+
   </body>
 </html>

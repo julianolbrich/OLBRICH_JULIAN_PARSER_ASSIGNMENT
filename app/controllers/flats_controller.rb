@@ -12,7 +12,8 @@ class FlatsController < ApplicationController
       # there it will passed as a data-markers attribute and made .to_json
       {
         lng: flat.longitude,
-        lat: flat.latitude
+        lat: flat.latitude,
+        infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat}) }
       }
     end
   end
@@ -21,4 +22,22 @@ class FlatsController < ApplicationController
     @flat = Flat.find(params[:id])
   end
 
+  def new
+    @flat = Flat.new
+  end
+
+  def create
+    @flat = Flat.new(flat_params)
+    if @flat.save
+      redirect_to flats_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def flat_params
+    params.require(:flat).permit(:street_number, :street, :district, :city, :state, :country)
+  end
 end
