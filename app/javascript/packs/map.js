@@ -1,5 +1,13 @@
 const initMapbox = () => {
 
+  const parseButton = document.querySelector("#parse-button")
+  function emptyParseButton(){
+    if(parseButton.val() === ''){
+        alert('Empty field');
+        return false;
+    }
+  };
+
   const mapElement = document.getElementById('map');
 
     if (mapElement) {

@@ -3,12 +3,12 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :address, label: false, placeholder: "Please select an address from the autocomplete dropdown while searching .." %>
+    <%= f.input :address, autofocus: true, label: false, placeholder: "While searching please select your address from the listed choices .." %>
   </div>
 
   <p> <em> tips: use '..straße' instead of '..str.' </em> </p>
 
-  <div class="form-actions text-left" style="margin-bottom: 10px;">
+  <div class="form-actions text-left" style="margin-bottom: 0px;" id="parse-button">
     <%= f.button :submit, value: "PARSE ADDRESS", class: "btn btn-primary", method: :post, remote: true %>
   </div>
 
