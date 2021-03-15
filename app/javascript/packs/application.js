@@ -33,3 +33,12 @@ import "bootstrap";
 // document.addEventListener('turbolinks:load', () => {
 //   initMapbox();
 // })
+
+
+// FÜR MICH UMFORMULIEREN:
+// import { initMapbox } from '../plugins/init_mapbox';
+// --> https://github.com/bluepostit/geocoding-342/blob/master/app/javascript/plugins/init_mapbox.js
+// import { initAutocomplete } from '../plugins/init_autocomplete';
+// --> https://github.com/bluepostit/geocoding-342/blob/master/app/javascript/plugins/init_autocomplete.js
+// initMapbox();
+// initAutocomplete();
