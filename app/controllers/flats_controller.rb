@@ -1,7 +1,7 @@
 class FlatsController < ApplicationController
 
   def index
-    @flats = Flat.where.not(address: nil)
+    @flats = Flat.all
     @markers = @flats.geocoded.map do |flat|
       {
         lng: flat.longitude,
