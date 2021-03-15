@@ -1,34 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row p-2">
+    <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
 
-<p>
-  <strong>Street number:</strong>
-  <%= @flat.street_number %>
-</p>
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Street:</strong>
-  <%= @flat.street %>
-</p>
+      <p>
+        <strong>Street number:</strong>
+        <%= @flat.street_number %>
+      </p>
 
-<p>
-  <strong>District:</strong>
-  <%= @flat.district %>
-</p>
+      <p>
+        <strong>Street:</strong>
+        <%= @flat.street %>
+      </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @flat.city %>
-</p>
+      <p>
+        <strong>District:</strong>
+        <%= @flat.district %>
+      </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @flat.state %>
-</p>
+      <p>
+        <strong>City:</strong>
+        <%= @flat.city %>
+      </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @flat.country %>
-</p>
+      <p>
+        <strong>State:</strong>
+        <%= @flat.state %>
+      </p>
 
-<%= link_to 'Edit', edit_flat_path(@flat) %> |
-<%= link_to 'Back', flats_path %>
+      <p>
+        <strong>Country:</strong>
+        <%= @flat.country %>
+      </p>
+      <br>
+
+      <%#= link_to 'Edit', edit_flat_path(@flat) %> <!-- | -->
+      <%= link_to 'Back', flats_path, class: "btn btn-outline-info" %>
+
+    </div>
+  </div>
+</div>

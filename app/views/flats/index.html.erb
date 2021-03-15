@@ -1,44 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row p-2">
+    <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
 
-<h1>Flats</h1>
+      <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Street number</th>
-      <th>Street</th>
-      <th>District</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <h1 class="text-right" style="margin-bottom: 10px;"> ADDRESS PARSER </h1>
+      <h4 class="text-right" style="margin-bottom: 15px;"> HOMEDAY ASSIGNMENT </h4>
+      <h6 class="text-right" style="margin-bottom: 30px;"> by <strong>Julian Olbrich</strong> </h6>
 
-  <tbody>
-    <% @flats.each do |flat| %>
-      <tr>
-        <td><%= flat.street_number %></td>
-        <td><%= flat.street %></td>
-        <td><%= flat.district %></td>
-        <td><%= flat.city %></td>
-        <td><%= flat.state %></td>
-        <td><%= flat.country %></td>
-        <td><%= link_to 'Show', flat %></td>
-        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
-        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <%= render 'form', flat: @flat %>
 
-<br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Street</th>
+            <th>Number</th>
+            <th>District</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
 
-<%= link_to 'New Flat', new_flat_path %>
+        <tbody>
+          <% @flats.each do |flat| %>
+            <tr>
+              <td><%= flat.address %></td>
+              <td><%= flat.street %></td>
+              <td><%= flat.street_number %></td>
+              <td><%= flat.district %></td>
+              <td><%= flat.city %></td>
+              <td><%= flat.state %></td>
+              <td><%= flat.country %></td>
 
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>">
+              <td><%= link_to 'Show', flat_path(flat), class: "btn btn-outline-success", style: "line-height: 1.2; padding: 0.5rem 0.6rem;" %></td>
+              <td><%= link_to 'Delete', flat_path(flat.id), method: :delete, data: { confirm: 'Are you sure to delete this address?' }, class: "btn btn-outline-danger", style: "line-height: 1.2; padding: 0.5rem 0.6rem;" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%#= link_to 'New Flat', new_flat_path %>
+
+      <div id="map"
+           style="width: 100%; height: 600px;"
+           data-markers="<%= @markers.to_json %>">
+      </div>
+
+    </div>
+  </div>
 </div>
-     <!-- data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"> -->
 
+<%#= raise %>

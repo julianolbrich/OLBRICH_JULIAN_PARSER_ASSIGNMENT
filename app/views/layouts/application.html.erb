@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Parser Assignment</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,41 +21,6 @@
   <body>
     <%= yield %>
 
-    <script>
-
-      const mapElement = document.getElementById('map');
-
-      if (mapElement) {
-        // mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
-        mapboxgl.accessToken = 'pk.eyJ1IjoianVsaWFub2xicmljaCIsImEiOiJja205NXQxd3kxMm9tMm9tejlkaHU2YWVjIn0.7R22-aaSaoLIpSoGe3KMFQ'
-
-        const map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v10'
-        });
-
-        const markers = JSON.parse(mapElement.dataset.markers);
-
-        markers.forEach((marker) => {
-          new mapboxgl.Marker()
-            .setLngLat([marker.lng, marker.lat])
-            .addTo(map);
-        })
-
-        if (markers.length === 0) {
-          map.setZoom(1);
-        } else if (markers.length === 1) {
-          map.setZoom(14);
-          map.setCenter([markers[0].lng, markers[0].lat]);
-        } else {
-          const bounds = new mapboxgl.LngLatBounds();
-          markers.forEach((markers) => {
-            bounds.extend([markers.lng, markers.lat]);
-          });
-          map.fitBounds(bounds, {duration: 1000, padding: 75})
-        }
-      }
-
-    </script>
+    <script></script>
   </body>
 </html>
