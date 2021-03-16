@@ -24,7 +24,8 @@ const initMapbox = () => {
 
       // Settings for Markers
       if (markers.length === 0) {
-        map.setZoom(1);
+        map.setZoom(6);
+        map.setCenter([10.4234469, 51.0834196,]);
       } else if (markers.length === 1) {
         map.setZoom(14);
         map.setCenter([markers[0].lng, markers[0].lat]);
