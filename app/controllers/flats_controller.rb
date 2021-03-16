@@ -24,15 +24,17 @@ class FlatsController < ApplicationController
   def create
     @flat = Flat.new(flat_params)
 
-    if @flat.save
-      respond_to do |format|
-        format.html {redirect_to flats_path}
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.html { render :new }
-        format.js
+    unless Flat.find_by(address: @flat.address)
+      if @flat.save
+        respond_to do |format|
+          format.html {redirect_to flats_path}
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html { render :new }
+          format.js
+        end
       end
     end
 
