@@ -6,11 +6,11 @@
     <%= f.input :address, autofocus: true, label: false, placeholder: "While typing please select your address from the suggestion dropdown .." %>
   </div>
 
-  <p style="font-size: 15px; letter-spacing: 0.4px; padding-left: 4px;"> <em> <strong> tip: </strong> search for 'Prinzessinnen<span style="text-decoration: underline;">straße</span> 26' instead of 'Prinzessinnen<span style="text-decoration: underline;">str.</span> 26' </em> </p>
-
-  <div class="form-actions text-left" style="margin-bottom: 2px;" id="parse-button">
-    <%= f.button :submit, value: "PARSE ADDRESS", class: "btn btn-primary", method: :post, remote: true %>
+  <div class="d-flex" style="">
+    <div class="form-actions text-left" style="margin-bottom: 2px;" id="parse-button">
+      <%= f.button :submit, value: "PARSE ADDRESS", class: "btn btn-primary", method: :post, remote: true %>
+    </div>
+    <p style="font-size: 15px; letter-spacing: 0.4px; padding-left: 14px; padding-top: 7px;"> <em> <strong> tip: </strong> search for 'Prinzessinnen<span style="text-decoration: underline;">straße</span> 26' instead of 'Prinzessinnen<span style="text-decoration: underline;">str.</span> 26' </em> </p>
   </div>
-
   <br>
 <% end %>
