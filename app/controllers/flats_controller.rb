@@ -1,7 +1,7 @@
 class FlatsController < ApplicationController
 
   def index
-    @flats = Flat.where.not(street: "", state: "Hawaii").paginate(:page => params[:page])
+    @flats = Flat.where.not(street: "", state: "Hawaii").paginate(:page => params[:page]).order('created_at DESC')
     @markers = @flats.geocoded.map do |flat|
       {
         lng: flat.longitude,
@@ -31,11 +31,10 @@ class FlatsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :new }
+        format.html { redirect_to flats_path }
         format.js
       end
     end
-
   end
 
   def destroy

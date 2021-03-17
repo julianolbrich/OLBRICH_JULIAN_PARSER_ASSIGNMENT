@@ -25,16 +25,16 @@
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
   text-align: center;
-  padding: 1em;
   margin: 10px 1px 25px 0px;
+  padding: 1em;
   cursor: default; }
   .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; }
   .apple_pagination .disabled {
     color: #aaaaaa; }
-  .apple_pagination .current {
+  .apple_pagination .active {
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     background-color: #bebebe;
     display: inline-block;
     width: 1.4em;
