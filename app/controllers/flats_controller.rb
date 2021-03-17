@@ -42,7 +42,7 @@ class FlatsController < ApplicationController
 
     if @flat.destroy
       respond_to do |format|
-        format.html { redirect_to flats_path }
+        format.html { redirect_back fallback_location: :back }
         format.js
       end
     else

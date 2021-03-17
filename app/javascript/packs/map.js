@@ -50,7 +50,6 @@ const initMapbox = () => {
       container: addressInput
     })
   };
-
 };
 
 export { initMapbox };
