@@ -54,7 +54,7 @@
         <% end %>
 
         <div class="col-12 d-flex w-100 p-0" style="justify-content: flex-end;">
-            <%= will_paginate @flats, :container => false, :page_links => true, renderer: BootstrapPagination::Rails, class: "apple_pagination" %>
+            <%= will_paginate @flats, :container => false, :page_links => true, renderer: BootstrapPagination::Rails, class: "apple_pagination", previous_label: '&laquo;', next_label: '&raquo;'  %>
         </div>
       </div>
 

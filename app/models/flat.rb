@@ -8,7 +8,7 @@ class Flat < ApplicationRecord
   self.per_page = 5
 
   def parse_address
-    result = Geocoder.search(address).first || Geocoder.search("Hawaii").first
+    result = Geocoder.search(address).first || Geocoder.search("Berlin").first
 
     # self.formatted_address = result.formatted_address
     self.street_number = result.house_number if result.house_number

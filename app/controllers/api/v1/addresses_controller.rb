@@ -8,4 +8,13 @@ class Api::V1::AddressesController < Api::V1::BaseController
     @address = Address.find(params[:id])
   end
 
+  def create
+    @address = Flat.new(address_params)
+    if @address.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
 end
