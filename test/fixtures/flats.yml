@@ -1,0 +1,25 @@
+# when running tests, the system will take flats from this file
+brunnenstraße:
+  address: "Brunnenstaße 180, 10119 Berlin"
+  formatted_address: ""
+  street_number: "180"
+  street: "Brunnenstaße"
+  postal_code: "10119"
+  district: "Mitte"
+  city: "Berlin"
+  state: "Berlin"
+  country: "Germany"
+  latitude: 32
+  longitude: 52
+falckensteinstr:
+  address: "Falckensteinstr 21, 12345 Berlin"
+  formatted_address: ""
+  street_number: "21"
+  street: "Falckensteinstr"
+  postal_code: "12345"
+  district: "Kreuzberg"
+  city: "Berlin"
+  state: "Berlin"
+  country: "Germany"
+  latitude: 32
+  longitude: 52
