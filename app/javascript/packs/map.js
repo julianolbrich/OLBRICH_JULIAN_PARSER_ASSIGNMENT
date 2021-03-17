@@ -22,7 +22,7 @@ const initMapbox = () => {
           .addTo(map);
       })
 
-      // Settings for Markers
+      // Map/Marker Settings
       if (markers.length === 0) {
         map.setZoom(6);
         map.setCenter([10.4234469, 51.0834196,]);
@@ -43,7 +43,7 @@ const initMapbox = () => {
       // }));
     }
 
-    // Algolia Autocomnplete / for Address creation
+    // Algolia Autocomplete before Address Creation
     const addressInput = document.getElementById('flat_address');
     if (addressInput) {
       const placesAutocomplete = places({
