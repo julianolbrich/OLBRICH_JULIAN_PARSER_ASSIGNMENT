@@ -7,8 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'csv'
-  Flat.destroy_all
-  puts Flat.count
+  Address.destroy_all
 
 # STEP 1: Parse CSV with addresses from textfile
   filepath = 'db/addresses.csv'
@@ -66,11 +65,11 @@ require 'csv'
       # I first planned on getting city via Algolia, but it doesnt take postal code as argument
       # hence my workaround, which covers i think 100% of all cases:
       postcode_and_city = addresse.to_s.match(/[0-9]{5}+[ ]+[a-zA-ZäöüÄÖÜß\-]+/).to_s
-      city = postcode_and_city.sub(plz,"").strip
+      city = postcode_and_city.sub(plz,"").strip.titleize
       if city == ""
         city2 = addresse.to_s.match(/[^(, )]*$/).to_s
         city = city2.match(/\w*/).to_s
-        city.strip
+        city.strip.titleize
       end
 
     # (7) "the rest" with some cleaning
@@ -82,7 +81,8 @@ require 'csv'
       addresszusatz_4 = addresszusatz_5.gsub(", ,", "")
       addresszusatz_3 = addresszusatz_4.gsub(",   / ", "")
       addresszusatz_2 = addresszusatz_3.gsub(",  / ", "")
-      addresszusatz = addresszusatz_2.gsub(",   ", "")
+      addresszusatz_1 = addresszusatz_2.gsub(",   ", "")
+      addresszusatz = addresszusatz_1.gsub("/ ", "")
       addresszusatz.strip!
 
       homeday_input = { input: input, address: address, street: street, number: number_cleaned, number_full: number_complete, plz: plz, city: city, addresszusatz: addresszusatz }
@@ -95,19 +95,19 @@ require 'csv'
 
 # STEP 3: Seed addresses to DB
     @parsed_input.each do |row|
-      Flat.create(
+      Address.create(
         input: row[:input],
         address: row[:address],
         street: row[:street],
-        number: row[:number_cleaned],
-        number_full: row[:number_complete],
+        number: row[:number],
+        number_full: row[:number_full],
         plz: row[:plz],
         city: row[:city],
-        addresszusatz: row[:addresszusatz
+        addresszusatz: row[:addresszusatz]
       )
     end
 
-    puts "Now #{Flat.count} rows in the flats table."
+    puts "Now #{Address.count} rows in the address table."
 
 
 

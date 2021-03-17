@@ -1,11 +1,11 @@
 class Api::V1::AddressesController < Api::V1::BaseController
 
   def index
-    @addresses = Flat.all
+    @addresses = Address.all
   end
 
   def show
-    @address = Flat.find(params[:id])
+    @address = Address.find(params[:id])
   end
 
 end

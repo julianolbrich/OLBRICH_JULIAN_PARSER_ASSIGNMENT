@@ -1,3 +1,3 @@
 json.array! @addresses do |address|
-  json.extract! address, :address #:id, :name
+  json.extract! address, :id, :input, :address, :street, :number, :number_full, :plz, :city, :addresszusatz
 end
