@@ -57,7 +57,7 @@ require 'csv'
 
     # (6) city
       # I first planned on getting city via Algolia, but it doesnt take postal code as argument
-      # hence my workaround, which covers i think 100% of all cases:
+      # hence my workaround, which should cover almost all cases:
       postcode_and_city = addresse.to_s.match(/[0-9]{5}+[ ]+[a-zA-ZäöüÄÖÜß\-]+/).to_s
       city = postcode_and_city.sub(plz,"").strip.titleize
       if city == ""
@@ -66,7 +66,7 @@ require 'csv'
         city.strip.titleize
       end
 
-    # (7) "the rest" with some cleaning
+    # (7) "the rest", remaining info (i.e. streets without housenumber, "Templiner Vorstadt", ..) and some cleaning
       addresszusatz_9 = input
       addresszusatz_8 = addresszusatz_9.gsub(address_str, "")
       addresszusatz_7 = addresszusatz_8.gsub(postcode_and_city, "")
@@ -79,11 +79,11 @@ require 'csv'
       addresszusatz = addresszusatz_1.gsub("/ ", "")
       addresszusatz.strip!
 
-      homeday_input = { input: input, address: address, street: street, number: number_cleaned, number_full: number_complete, plz: plz, city: city, addresszusatz: addresszusatz }
-      @parsed_input << homeday_input
+      homeday_input_normalized = { input: input, address: address, street: street, number: number_cleaned, number_full: number_complete, plz: plz, city: city, addresszusatz: addresszusatz }
+      @parsed_input << homeday_input_normalized
     end
 
-# STEP 3: Seed addresses to provide API with JSON output of the parsed test-addresses
+# STEP 3: Seed addresses to provide API with JSON output of the normalized test-addresses
     @parsed_input.each do |row|
       Address.create(
         input: row[:input],
