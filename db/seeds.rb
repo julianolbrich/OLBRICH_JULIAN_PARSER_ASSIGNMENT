@@ -1,6 +1,6 @@
 require 'csv'
-  Address.destroy_all
-  Flat.destroy_all
+  # Address.destroy_all
+  # Flat.destroy_all
 
 # STEP 1: Parse CSV with addresses from textfile
   filepath = 'db/addresses.csv'
@@ -98,7 +98,7 @@ require 'csv'
 
       address_for_algolia = row[:street] + " " + row[:number] + " " + row[:city]
 
-      # and send directly to Geocoder API with goal: add district & state
+      # send directly to Geocoder API with goal: add district & state
       sleep 1
       Flat.create(
         address: address_for_algolia,
