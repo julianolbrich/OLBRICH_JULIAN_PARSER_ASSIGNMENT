@@ -14,35 +14,24 @@ class FlatsTest < ApplicationSystemTestCase
     save_and_open_screenshot
 
     assert_selector "h5", text: "HOMEDAY ASSIGNMENT"
+    assert_selector ".address", count: Flat.count
   end
 
-  # test "visiting the index" do
-  #   visit root_path
-  #   assert_selector "h5", text: "Flats"
-  # end
 
-  # test "creating a Flat" do
-  #   visit flats_url
-  #   click_on "New Flat"
+  # test 'with postal code and city' do
+  #   let(:params) { 'address=10119 Berlin' }
+  #   it 'returns postal code, city, state and country' do
+  #     expected = {
+  #       'postal_code' => '10119',
+  #       'city' => 'Berlin',
+  #       'district' => 'Mitte',
+  #       'country' => 'Germany'
+  #     }
 
-  #   fill_in "City", with: @flat.city
-  #   fill_in "Country", with: @flat.country
-  #   fill_in "District", with: @flat.district
-  #   fill_in "State", with: @flat.state
-  #   fill_in "Street", with: @flat.street
-  #   fill_in "Street number", with: @flat.street_number
-  #   click_on "Create Flat"
-
-  #   assert_text "Flat was successfully created"
-  #   click_on "Back"
-  # end
-
-  # test "destroying a Flat" do
-  #   visit flats_url
-  #   page.accept_confirm do
-  #     click_on "Delete", match: :first
+  #     expect(json_body).to eq expected
+  #     expect(last_response.status).to eq 200
   #   end
-
-  #   assert_text "Flat was successfully destroyed"
   # end
+
+
 end
