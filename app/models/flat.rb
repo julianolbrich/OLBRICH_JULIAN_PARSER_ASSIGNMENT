@@ -5,6 +5,8 @@ class Flat < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   after_validation :parse_address, if: :will_save_change_to_address?
 
+  self.per_page = 5
+
   def parse_address
     result = Geocoder.search(address).first || Geocoder.search("Hawaii").first
 

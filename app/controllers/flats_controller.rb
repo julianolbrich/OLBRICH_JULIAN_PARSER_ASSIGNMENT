@@ -1,7 +1,7 @@
 class FlatsController < ApplicationController
 
   def index
-    @flats = Flat.all
+    @flats = Flat.where.not(street: "", state: "Hawaii").paginate(:page => params[:page])
     @markers = @flats.geocoded.map do |flat|
       {
         lng: flat.longitude,
