@@ -8,6 +8,7 @@
 
 require 'csv'
   Address.destroy_all
+  Flat.destroy_all
 
 # STEP 1: Parse CSV with addresses from textfile
   filepath = 'db/addresses.csv'
@@ -89,11 +90,7 @@ require 'csv'
       @parsed_input << homeday_input
     end
 
-    # @parsed_input.each do |address|
-    #   puts address
-    # end
-
-# STEP 3: Seed addresses to DB
+# STEP 3: Seed addresses to provide API with JSON output of the parsed test-addresses
     @parsed_input.each do |row|
       Address.create(
         input: row[:input],
@@ -105,14 +102,19 @@ require 'csv'
         city: row[:city],
         addresszusatz: row[:addresszusatz]
       )
+
+      address_for_algolia = row[:street] + " " + row[:number] + " " + row[:city]
+
+      # and send directly to Geocoder API with goal: add district & state
+      sleep 1
+      Flat.create(
+        address: address_for_algolia,
+        street_number: row[:number],
+        street: row[:street],
+        postal_code: row[:plz],
+        city: row[:city]
+      )
     end
 
     puts "Now #{Address.count} rows in the address table."
-
-
-
-# STEP 4: Feed Algolia with parsed_input and add district, state
-
-# STEP 5: Provide API with JSON output
-
-# STEP 6: create button to json-index path (http://localhost:3000/api/v1/addresses)
+    puts "Now #{Flat.count} rows in the flats table."
